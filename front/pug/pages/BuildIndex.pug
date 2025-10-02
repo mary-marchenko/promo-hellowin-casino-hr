@@ -1,0 +1,490 @@
+//.fav-page.loading
+//    .spinner-overlay
+//        .spinner
+.fav-page
+    .promo
+        .promo__img
+            picture
+                source(media="(max-width: 600px)" srcset="img/promo/hellowin-mob.png")
+                source(media="(max-width: 1050px)" srcset="img/promo/hellowin-tab.png")
+                img(src="img/promo/hellowin-desc.png" alt="hellowin")
+        .promo__container
+            a.promo__btn.btn.unauth-msg(href="/login/" role="button" data-translate="loginBtn" data-promo="hellowin-hr-131025" data-button="authorization_header") Prijavi se
+            button.promo__btn.btn.part-btn.hide(data-translate="partBtn" data-promo="hellowin-hr-131025" data-button="took-part_header")
+            a.promo__btn.btn.play-btn.hide(data-translate="playBtn" href="/casino/hellowin/" data-promo="hellowin-hr-131025" data-button="playCasino_header")
+            .promo__dates(data-translate="promoDates") Datumi promocije: od 13.10.2025 do 02.11.2025
+            p.promo__info(data-translate="promoInfo") Ukupni nagradni fond promocije "XXX" iznosi 20.000 EUR i 4.000 besplatnih vrtnji. Promocija traje od XXX 2025. do XXX 2025. Svakog tjedna sudionici se natječu za tjedni nagradni fond od 5.000 EUR i 1.000 besplatnih vrtnji. Detalji promocije dostupni su na favbet.hr.
+    .gide
+        .gide__decor
+            .gide__decor-witch
+                img(src="img/bg-pers/witch.png" alt="witch")
+            .gide__decor-ghost.ghost-l
+                img(src="img/bg-pers/ghost-l.png" alt="ghost")
+            .gide__decor-ghost.ghost-r
+                img(src="img/bg-pers/ghost-r.png" alt="ghost")
+        .gide__bet
+            img(src="img/bg-pers/bet.png" alt="bet")
+        .gide__title
+            picture.hr
+                source(media="(max-width: 600px)" srcset="img/gide/gide-title-mob.png")
+                source(media="(max-width: 1050px)" srcset="img/gide/gide-title-tab.png")
+                img(src="img/gide/gide-title-desc.png" alt="hellowin")
+            picture.en
+                source(media="(max-width: 600px)" srcset="img/gide/gide-title-mob-en.png")
+                source(media="(max-width: 1050px)" srcset="img/gide/gide-title-tab-en.png")
+                img(src="img/gide/gide-title-desc-en.png" alt="hellowin")
+        .gide__block
+            .gide__block-decor
+                .gide__block-balls.balls-l
+                    img(src="img/gide/balls-left.png" alt="balls")
+                .gide__block-balls.balls-r
+                    img(src="img/gide/balls-right.png" alt="balls")
+            .gide__block-prize(data-translate="gidePrize") 20,000 EUR i 4,000 FS
+            .gide__block-txt(data-translate="gideTxt") Tijekom 4 tjedna sudjeluj u promociji "XXX" od FAVBET-a i osvoji priliku za dio nagradnog fonda od 20,000 EURO, 4,000 besplatnih vrtnji.
+            a.gide__btn.btn.unauth-msg(href="/login/" role="button" data-translate="loginBtn" data-promo="hellowin-hr-131025" data-button="authorization_content") Prijavi se
+            button.gide__btn.btn.part-btn.hide(data-translate="partBtn" data-promo="hellowin-hr-131025" data-button="took-part_content")
+            a.gide__btn.btn.play-btn.hide(data-translate="playBtn" href="/casino/hellowin/" data-promo="hellowin-hr-131025" data-button="playCasino_content")
+            button.gide__button._button
+                img._button-img(src="img/info-icon.svg" alt="info")
+                ._button-txt(data-translate="gideDetails") Više informacija
+            .gide__block-joker
+                picture
+                    source(media="(max-width: 600px)" srcset="img/gide/joker-mob.png")
+                    source(media="(max-width: 1050px)" srcset="img/gide/joker-tab.png")
+                    img(src="img/gide/joker-desc.png" alt="joker")
+            .gide__block-magician
+                picture
+                    source(media="(max-width: 600px)" srcset="img/gide/magician-mob.png")
+                    source(media="(max-width: 1050px)" srcset="img/gide/magician-tab.png")
+                    img(src="img/gide/magician-desc.png" alt="magician")
+    .leaderboard
+        .leaderboard__decor
+            .leaderboard__decor-arrow.arrow-l
+                img(src="img/table/arrows-left.png" alt="arrow")
+            .leaderboard__decor-arrow.arrow-r
+                img(src="img/table/arrows-right.png" alt="arrow")
+            .leaderboard__decor-ghost
+                img(src="img/bg-pers/ghost-l.png" alt="ghost")
+            .leaderboard__decor-witch
+                img(src="img/bg-pers/witch.png" alt="witch")
+            .leaderboard__slots
+                img(src="img/table/slots.png" alt="slots")
+            .leaderboard__sam
+                img(src="img/table/sam.png" alt="sam")
+        .leaderboard__pumpkin
+            picture
+                source(media="(max-width: 600px)" srcset="img/table/pumpkin-mob.png")
+                source(media="(max-width: 1050px)" srcset="img/table/pumpkin-tab.png")
+                img(src="img/table/pumpkin-desc.png" alt="pumpkin")
+        .leaderboard__title
+            picture.hr
+                source(media="(max-width: 600px)" srcset="img/table/table-title-mob.png")
+                source(media="(max-width: 1050px)" srcset="img/table/table-title-tab.png")
+                img(src="img/table/table-title-desc.png" alt="hellowin")
+            picture.en
+                source(media="(max-width: 600px)" srcset="img/table/table-title-mob-en.png")
+                source(media="(max-width: 1050px)" srcset="img/table/table-title-tab-en.png")
+                img(src="img/table/table-title-desc-en.png" alt="hellowin")
+        .table
+            .table__txt(data-translate="tableTxt") Dođi do vrha turnirske ljestvice i natječi se za nagrade!
+            .table__tubs
+                .table__tubs-week.week1.active
+                    span(data-translate="week1") 1 tjedan
+                .table__tubs-week.week2
+                    span(data-translate="week2") 2 tjedan
+                .table__tubs-week.week3
+                    span(data-translate="week3") 3 tjedan
+            .table__head
+                .table__head-item(data-translate="place") Mjesto
+                .table__head-item(data-translate="userId") ID
+                .table__head-item(data-translate="points") Bodovi
+                .table__head-item(data-translate="prize") Nagrada
+                .table__head-item(data-translate="wager") Ulog
+            .table__body
+                .table__body-scroll#table
+                    .table__row.place1
+                        .table__row-item 1
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row.place2
+                        .table__row-item 2
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item € 2 000
+                        .table__row-item x1
+                    .table__row.place3
+                        .table__row-item 3
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item € 2 000
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 4
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 5
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 6
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 7
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 8
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 9
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 10
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 11
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 12
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 13
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 14
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 15
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 16
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 17
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 18
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 19
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 20
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                .table__note(data-translate="places") 20 Place
+                .table__body-other#tableOther
+                    .table__row
+                        .table__row-item 54
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row.you
+                        .table__row-item 55
+                            span.you(data-translate="you") you
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+                    .table__row
+                        .table__row-item 56
+                        .table__row-item 4538***
+                        .table__row-item 2333000
+                        .table__row-item 2,000 EUR
+                        .table__row-item x1
+        .leaderboard__bottom
+            button.leaderboard__button._button.button-earnPointsInfo
+                img.leaderboard__button-img(src="img/liders-icon.svg" alt="info")
+                ._button-txt(data-translate="leaderboardGideBtn") Kako osvojiti bodove na ljestvici
+            button.leaderboard__button._button.button-table
+                img._button-img(src="img/info-icon.svg" alt="info")
+                ._button-txt(data-translate="leaderboardTableBtn") Prize distribution table
+    .tournament
+        .tournament__decor
+            .tournament__decor-witch
+                img(src="img/bg-pers/witch-r.png" alt="witch")
+            .tournament__decor-ghost
+                img(src="img/bg-pers/ghost-l.png" alt="ghost")
+            .tournament__witchGirl
+                img(src="img/tournament/witch-girl.png" alt="witch girl")
+            .tournament__ghostGirl
+                img(src="img/tournament/ghost-girl.png" alt="ghost girl")
+        .tournament__bet
+            img(src="img/bg-pers/bet.png" alt="bet")
+        .tournament__title
+            picture.hr
+                source(media="(max-width: 600px)" srcset="img/tournament/tournament-title-mob.png")
+                source(media="(max-width: 1050px)" srcset="img/tournament/tournament-title-tab.png")
+                img(src="img/tournament/tournament-title-desc.png" alt="hellowin")
+            picture.en
+                source(media="(max-width: 600px)" srcset="img/tournament/tournament-title-mob-en.png")
+                source(media="(max-width: 1050px)" srcset="img/tournament/tournament-title-tab-en.png")
+                img(src="img/tournament/tournament-title-desc-en.png" alt="hellowin")
+        .tournament__container
+            .tournament__txt(data-translate="tournamentTxt") From XX.XX.2025 to XX.XX.2025, spin slots in the "Casino" section and earn points. The minimum bet in the Casino section is from 0.2 EUR.
+            .games
+                .games__list.week1
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/cyber-wolf.jpg" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                .games__list.week2.hide
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                .games__list.week3.hide
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+                    .games__list-item
+                        a.games__list-link(href="#" data-promo="hellowin-hr-131025" data-button="__footer")
+                        .games__list-item-img
+                            img(src="img/tournament/games/week1/candy-jar-clusters.png" alt="hellowin")
+        a.tournament__btn.btn.unauth-msg(href="/login/" role="button" data-translate="loginBtn" data-promo="hellowin-hr-131025" data-button="authorization_footer") Prijavi se
+        button.tournament__btn.btn.part-btn.hide(data-translate="partBtn" data-promo="hellowin-hr-131025" data-button="took-part_footer")
+        a.tournament__btn.btn.play-btn.hide(data-translate="playBtn" href="/casino/hellowin/" data-promo="hellowin-hr-131025" data-button="playCasino_footer")
+    .popup-wrap.opacity
+        .popup.gideInfo(data-popup="gideInfo")
+            .popup__close
+                img(src="img/close-icon.svg" alt="close").popup__close-img
+                .popup__close-txt(data-translate="close") Close
+            .popup__block
+                .popup__block-title(data-translate="gideInfoTitle1") 1. Take Part
+                .popup__block-txt(data-translate="gideInfoTxt1")
+                    p Press the "Take Part" button
+                    p Click the “Participate” button once and play for 4 promotional weeks.
+                    p Place bets on promotional games in the “Casino” section.
+                .popup__block-title(data-translate="gideInfoTitle2") 2. Score points
+                .popup__block-txt(data-translate="gideInfoTxt1")
+                    p Earn points and take prize places in the tournament table.
+                    p From 15.07.2025 to 11.08.2025, spin slots in the "Casino" section and earn points. For every 1 EUR wagered in participating games, the participant receives 1 game point. The minimum bet in the Casino section is from 0.2 EURO.
+        .popup.earnPointsInfo(data-popup="earnPointsInfo")
+            .popup__close
+                img(src="img/close-icon.svg" alt="close").popup__close-img
+                .popup__close-txt(data-translate="close") Close
+            .popup__block
+                .popup__block-title(data-translate="earnPointsTitle") How to earn points in the leaderboard
+                .popup__block-txt(data-translate="earnPointsInfoTxt")
+                    p Mechanics:
+                    p Points are accumulated based on the total amount of bets placed.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+        .popup.tableInfo(data-popup="tableInfo")
+            .popup__close
+                img(src="img/close-icon.svg" alt="close").popup__close-img
+                .popup__close-txt(data-translate="close") Close
+            .popup__block
+                .popup__block-title(data-translate="popupTableTitle") Prize distribution table
+                .popup__block-header
+                    .popup__block-header-item(data-translate="place") Mjesto
+                    .popup__block-header-item(data-translate="prize") Nagrada
+                    .popup__block-header-item(data-translate="wager") Ulog
+                .popup__block-table
+                    .popup__block-table-scroll
+                        .popup__block-row
+                            .popup__block-item(data-translate="place1") 1
+                            .popup__block-item(data-translate="prize1") 2,000 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place2") 2
+                            .popup__block-item(data-translate="prize2") 1,000 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place3") 3
+                            .popup__block-item(data-translate="prize3") 5000 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place4") 4
+                            .popup__block-item(data-translate="prize4") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place5") 5
+                            .popup__block-item(data-translate="prize5") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place6") 6
+                            .popup__block-item(data-translate="prize6") 50 EUR
+                            .popup__block-item(data-translate="wager") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place7") 7
+                            .popup__block-item(data-translate="prize7") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place8") 8
+                            .popup__block-item(data-translate="prize8") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place9") 9
+                            .popup__block-item(data-translate="prize9") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place10") 10
+                            .popup__block-item(data-translate="prize10") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place11") 11
+                            .popup__block-item(data-translate="prize11") 0 FS Pragmatic Play
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place12") 12
+                            .popup__block-item(data-translate="prize12") 0 FS Pragmatic Play
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place13") 13
+                            .popup__block-item(data-translate="prize13") 0 FS Pragmatic Play
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place14") 100
+                            .popup__block-item(data-translate="prize14") 0 FS Pragmatic Play
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place15") 90-100
+                            .popup__block-item(data-translate="prize15") 0 FS Pragmatic Play
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place16") 16
+                            .popup__block-item(data-translate="prize16") 50 EUR
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place17") 17
+                            .popup__block-item(data-translate="prize17") 30 FS Play’n Go
+                            .popup__block-item(data-translate="wager1") x1
+                        .popup__block-row
+                            .popup__block-item(data-translate="place18") 18
+                            .popup__block-item(data-translate="prize18") 30 FS Play’n Go
+                            .popup__block-item(data-translate="wager1") x1
+
+
+

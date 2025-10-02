@@ -1,0 +1,209 @@
+.fav-page
+
+  @media screen and (min-width: 2200px)
+    .promo,
+    .leaderboard,
+    .tournament
+      background-size: 100% auto
+    .popup
+      transform: scale(1.5) translate(-33%, -30%)
+      transform-origin: center
+
+  @media screen and (min-width: 2200px) and (max-width: 2300px)
+    .popup
+      transform: scale(1.1) translate(-45%, -45%)
+      transform-origin: center
+
+  @media screen and (max-width: 1890px)
+    .leaderboard
+      &__slots
+        left: -60px
+        width: 1400px
+      &__sam
+        bottom: -985px
+        width: 400px
+        right: -90px
+
+  @media screen and (max-width: 1752px)
+    .leaderboard
+      &__slots
+        left: -40px
+        width: 1300px
+      &__sam
+        width: 350px
+        right: -40px
+    .tournament
+      &__witchGirl
+        width: 500px
+        &.showItem
+          left: 15px
+      &__ghostGirl
+        width: 240px
+        &.showItem
+          right: 50px
+
+  @media screen and (max-width: 1640px)
+    .promo
+      background-size: 110% auto
+      background-position-x: 14%
+    .gide
+      &__decor
+        .ghost-l
+          right: 200px
+        .ghost-r
+          right: 100px
+    .leaderboard
+      &__decor
+        width: 1050px
+        &-witch
+          right: -140px
+        &-ghost
+          left: -100px
+        .arrow-l
+          top: 130px
+          left: 60px
+        .arrow-r
+          right: 60px
+          top: 130px
+      &__slots
+        bottom: -1120px
+        left: -220px
+        width: 1100px
+      &__sam
+        bottom: -1000px
+        width: 300px
+        right: -240px
+    .tournament
+      &__decor
+        width: 1050px
+      &__witchGirl
+        width: 500px
+        &.showItem
+          left: -230px
+      &__ghostGirl
+        width: 240px
+        &.showItem
+          right: -180px
+
+  @media screen and (max-width: 1540px)
+    .gide
+      &__decor
+        width: 1050px
+        .ghost-l
+          right: -10px
+        .ghost-r
+          right: -10px
+        &-witch
+          left: 90px
+    .leaderboard
+      &__slots
+        left: -203px
+      &__sam
+        right: -210px
+    .tournament
+      &__witchGirl
+        &.showItem
+          left: -200px
+      &__ghostGirl
+        &.showItem
+          right: -160px
+
+  @media screen and (max-width: 1480px)
+    .promo
+      &__img
+        position: absolute
+        top: 10px
+        z-index: 2
+      &__container
+        margin-top: 460px
+    .gide
+      &__block
+        &-joker
+          &.showItem
+            left: -450px
+        &-magician
+          &.showItem
+            right: -395px
+    .leaderboard
+      &__slots,
+      &__sam
+        display: none
+    .tournament
+      &__witchGirl
+        &.showItem
+          left: -180px
+
+  @media screen and (max-width: 1410px)
+    .tournament
+      &__witchGirl,
+      &__ghostGirl
+        display: none
+    .leaderboard
+      &__decor
+        &-ghost
+          left: 0
+
+  @media screen and (max-width: 1252px)
+    .gide
+      &__block
+        &-joker
+          width: 290px
+          &.showItem
+            left: -370px
+        &-magician
+          width: 320px
+          &.showItem
+            right: -351px
+
+  @media screen and (max-width: 1130px)
+    .gide
+      &__block
+        &-joker
+          width: 270px
+          &.showItem
+            left: -350px
+        &-magician
+          width: 300px
+          &.showItem
+            right: -331px
+
+  @media screen and (max-width: 1080px)
+    .promo
+      &__img
+        max-width: 1040px
+      &__container
+        margin-top: 450px
+
+  @media screen and (max-width: 1050px)
+    .btn
+      min-width: 198px
+      height: 102px
+      font-size: 22px
+      line-height: 22px
+    .promo
+      &__btn
+        margin-left: 70px
+      &__img
+        max-width: 768px
+      &__container
+        margin-left: 0
+        margin-top: 330px
+      &__dates
+        margin-top: 80px
+        height: 60px
+        max-width: 630px
+        font-size: 24px
+        line-height: 27px
+        letter-spacing: 0.72px
+      &__info
+        max-width: 500px
+        font-size: 16px
+        line-height: 19px
+        letter-spacing: 0.48px
+
+
+
+
+
+
+
