@@ -80,6 +80,7 @@ body
     height: 91%
     background: url('../img/btn-lights.png') no-repeat 50% 50%/cover
     background-size: 100% 100%
+    animation: lightsPulse 4s infinite
   &:hover
     background: url('../img/btn-bg-hover.png') no-repeat 50% 50%/cover
     background-size: 100% 100%
@@ -1443,5 +1444,14 @@ body.dark
     top: 10px
     transform: translateX(-20px)  // невеликий зсув на фіналі
     opacity: 0
+
+
+@keyframes lightsPulse
+  0%, 50%, 100%
+    background: url('../img/btn-lights.png') no-repeat 50% 50%/cover
+    background-size: 100% 100%
+  25%, 75%
+    background: url('../img/btn-lights-hover.png') no-repeat 50% 50%/cover
+    background-size: 100% 100%
 
 
