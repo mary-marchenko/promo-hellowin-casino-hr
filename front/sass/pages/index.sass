@@ -71,6 +71,7 @@ body
   color: $btnBlue
   text-shadow: 0 2px 1px rgba(13, 18, 37, 0.20)
   z-index: 10
+  white-space: nowrap
   &:before
     content: ''
     position: absolute
@@ -112,6 +113,7 @@ body
   border: none
   transition: background .4s ease-in-out
   gap: 12px
+  white-space: nowrap
   &:hover,
   &:active
     background: $button-hover
@@ -223,7 +225,7 @@ body
     align-items: center
     background: url("../img/gide/gide-bg-desc.png") no-repeat 50% 100%/contain
     @media screen and (max-width: 1050px)
-      background: url("../img/gide/gide-bg-tab.png") no-repeat 50% 100%/contain
+      background: url("../img/gide/gide-bg-tab.png") no-repeat 50% 90px/cover
     @media screen and (max-width: 600px)
       background: url("../img/gide/gide-bg-mob.png") no-repeat 50% 100%/contain
     @media screen and (max-width: 950px) and (max-height: 450px) and (orientation: landscape)
@@ -233,7 +235,7 @@ body
       position: absolute
       content: ""
       left: 0
-      bottom: 0
+      bottom: -2px
       width: 100%
       height: 150px
       background: linear-gradient(0deg, #0D1225 0%, rgba(13, 18, 37, 0.00) 100%)
@@ -324,6 +326,7 @@ body
         z-index: 2
       .balls-l
         left: -110px
+        transform: rotate(-31.703deg)
       .balls-r
         right: -110px
       &-prize
@@ -334,11 +337,15 @@ body
         background: linear-gradient(90deg, #FFF 0%, #FFBF72 100%)
         background-clip: text
         -webkit-text-fill-color: transparent
-        font-size: 48px
-        line-height: 48px
+        font-size: 53px
+        line-height: 53px
         letter-spacing: 1.445px
         font-family: $font-epundaSlab-semi-bold
         filter: drop-shadow(0 2px 2px rgba(13,18,37,.5))
+        span
+          font-family: inherit
+          font-size: 48px
+          line-height: 48px
       &-txt
         z-index: 3
         margin-top: 30px
@@ -713,10 +720,10 @@ body
     background: url("../img/tournament/tournament-bg-desc.jpg") no-repeat 50% 0/contain
     background-size: 100% auto
     @media screen and (max-width: 1050px)
-      background: url("../img/tournament/tournament-bg-tab.png") no-repeat 50% 0/contain
+      background: url("../img/tournament/tournament-bg-tab.png") no-repeat 50% 100%/contain
       background-size: 100% auto
     @media screen and (max-width: 600px)
-      background: url("../img/tournament/tournament-bg-mob.jpg") no-repeat 50% 0/contain
+      background: url("../img/tournament/tournament-bg-mob.png") no-repeat 50% 100%/contain
       background-size: 100% auto
     @media screen and (max-width: 950px) and (max-height: 450px) and (orientation: landscape)
       background-size: 100% auto
@@ -846,27 +853,9 @@ body
           transition: all .4s ease-in-out
           box-shadow: 0 0 32px 0 #404C77
           cursor: pointer
-          //border-radius: 10px
-          //border: 2px solid transparent
-          //background: linear-gradient(transparent, transparent) padding-box, linear-gradient(90deg, #FFD19B, #FFFFFF, #FFD19B) border-box
-          //box-shadow: 0 0 32px 0 #404C77
-          //background-origin: border-box
-          //background-clip: padding-box, border-box
           &:hover
             transform: scale(1.1)
             box-shadow: 0 0 48px 8px #404C77
-          &:before
-            content: ""
-            position: absolute
-            top: -50px
-            inset: 0
-            border-radius: inherit
-            padding: 2px
-            background: conic-gradient(from 45deg, #FFD19B 0%, #FFD19B80 15%, #FFD19B40 50%, #FFD19B80 85%, #FFD19B 100%)
-            -webkit-mask: conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)
-            -webkit-mask-composite: xor
-            mask-composite: exclude
-            pointer-events: none
           &-img
             border-radius: 10px
             width: 175px
@@ -879,15 +868,15 @@ body
           &:nth-child(6),
           &:nth-child(8)
             margin-top: 22px
+            align-self: flex-start
           &:nth-child(1),
           &:nth-child(3)
-            align-self: flex-start
-          &:nth-child(6),
-          &:nth-child(8)
             align-self: flex-start
           &:nth-child(5),
           &:nth-child(7)
             margin-top: -22px
+          &.mob
+            display: none
     &__btn
       position: absolute
       bottom: 60px
@@ -947,8 +936,18 @@ body
           &-title
             margin-bottom: 20px
           &-txt
+            padding-right: 10px
             text-align: center
-            max-width: 288px
+            max-width: 298px
+            max-height: 310px
+            overflow-y: auto
+            scrollbar-width: auto
+            &::-webkit-scrollbar-thumb
+              width: 4px
+              background: $green
+            &::-webkit-scrollbar
+              background: transparent
+              width: 4px
     &.tableInfo
       width: 531px
       height: 728px
@@ -1343,6 +1342,20 @@ body.dark
   100%
     transform: translateX(0) rotate(360deg)
 
+@keyframes flyFlipTab
+  0%
+    transform: translateX(0) rotate(0deg)
+  20%
+    transform: translateX(-140px) rotate(0deg)
+  40%
+    transform: translateX(-140px) rotate(180deg)
+  60%
+    transform: translateX(175px) rotate(180deg)
+  80%
+    transform: translateX(175px) rotate(360deg)
+  100%
+    transform: translateX(0) rotate(360deg)
+
 //@keyframes flyFlip2
 //  0%
 //    transform: translateX(0) rotate(0deg)
@@ -1369,15 +1382,24 @@ body.dark
 
 @keyframes flyRightToLeft
   0%
-    top: -400px
-    transform: translateX(0)   // старт із базового left
+    transform: translateY(-400px) translateX(0)
     opacity: 0
   10%
     opacity: 1
   100%
-    top: 240px
-    transform: translateX(-300px)  // зсув вліво
+    transform: translateY(240px) translateX(-300px)
     opacity: 1
+
+@keyframes flyRightToLeftTab
+  0%
+    transform: translateY(-400px) translateX(0)
+    opacity: 0
+  10%
+    opacity: 1
+  100%
+    transform: translateY(240px) translateX(-420px)
+    opacity: 1
+
 
 @keyframes flyGhost
   0%
@@ -1453,5 +1475,19 @@ body.dark
   25%, 75%
     background: url('../img/btn-lights-hover.png') no-repeat 50% 50%/cover
     background-size: 100% 100%
+
+@keyframes ghostMove
+  0%
+    transform: translate(0, 0) rotate(10deg)
+    opacity: 1
+  40%
+    transform: translate(50px, -20px) rotate(-10deg) // вправо й трохи вгору
+    opacity: 0.5
+  70%
+    transform: translate(-15px, -40px) rotate(-40deg) // далі сильніше вгору-вліво
+    opacity: 0
+  100%
+    transform: translate(0, 0) rotate(10deg)
+    opacity: 1
 
 

@@ -177,17 +177,31 @@
   @media screen and (max-width: 1050px)
     .btn
       min-width: 198px
-      height: 102px
+      height: 110px
       font-size: 22px
       line-height: 22px
+    ._button
+      min-width: 227px
+      border-radius: 14px
+      gap: 8px
+      height: 48px
+      &-img
+        width: 24px
+        height: 24px
+      &-txt
+        font-size: 17px
+        line-height: 18px
+        letter-spacing: 0.51px
     .promo
+      background-size: 100% auto
+      background-position: 50% 50%
       &__btn
         margin-left: 70px
       &__img
         max-width: 768px
       &__container
         margin-left: 0
-        margin-top: 330px
+        margin-top: 324px
       &__dates
         margin-top: 80px
         height: 60px
@@ -196,14 +210,586 @@
         line-height: 27px
         letter-spacing: 0.72px
       &__info
+        margin-top: 43px
         max-width: 500px
         font-size: 16px
         line-height: 19px
         letter-spacing: 0.48px
+    .gide
+      &__decor
+        width: 600px
+        &-witch
+          animation: flyRightToLeftTab 5s linear infinite
+          top: 300px
+          left: 20px
+          width: 100px
+        .ghost-l
+          display: none
+        .ghost-r
+          width: 78px
+      &__bet
+        width: 100px
+        margin-bottom: 20px
+      &__title
+        width: 490px
+      &__block
+        height: 420px
+        padding-top: 100px
+        &:before
+          width: 466px
+          height: 420px
+        &:after
+          width: 544px
+          height: 168px
+          top: -20px
+        &-balls
+          width: 115px
+          top: 20px
+        &-prize
+          max-width: 190px
+          font-size: 36px
+          line-height: 36px
+          letter-spacing: 1.08px
+          span
+            font-size: 32px
+            line-height: 32px
+            letter-spacing: 0.96px
+        &-txt
+          margin-top: 20px
+          max-width: 260px
+          font-size: 18px
+          line-height: 22px
+          letter-spacing: 0.54px
+        &-joker
+          width: 200px
+          &.showItem
+            left: -270px
+        &-magician
+          width: 265px
+          &.showItem
+            right: -250px
+      &__btn
+        bottom: -60px
+      &__button
+        bottom: -140px
+    .leaderboard
+      margin-top: 215px
+      &:before
+        width: 550px
+        animation: smokeMove 10s ease-in-out infinite
+      &__decor
+        width: 600px
+        &-ghost
+          width: 78px
+        &-witch
+          right: -80px
+          width: 100px
+          animation: flyFlipTab 5s infinite ease-in-out
+        &-arrow
+          width: 98px
+        .arrow-l
+          left: -32px
+        .arrow-r
+          right: -62px
+          top: 89px
+      &__pumpkin
+        width: 140px
+        &:after
+          width: 75px
+          top: 25px
+      &__title
+        width: 444px
+        margin-top: -40px
+      .table
+        padding: 48px 45px 30px 30px
+        width: 708px
+        height: 650px
+        margin-top: -36px
+        &__txt
+          max-width: 297px
+          font-size: 16px
+          line-height: 23px
+          letter-spacing: 0.48px
+          margin-bottom: 22px
+        &__tubs
+          gap: 15px
+          &:after
+            width: 630px
+            bottom: -16px
+          &-week
+            width: 113px
+            height: 42px
+            span
+              font-size: 16px
+              letter-spacing: 0.48px
+        &__head
+          padding: 26px 0 10px 40px
+          &-item
+            font-size: 16px
+            line-height: 18px
+            letter-spacing: 0.48px
+        &__note
+          font-size: 12px
+          line-height: 13px
+          letter-spacing: 0.36px
+          height: 32px
+          &:before
+            width: 40px
+          &:after
+            width: 40px
+        &__body
+          padding-left: 40px
+          &-scroll
+            max-height: 208px
+            padding-right: 10px
+        &__row
+          height: 40px
+          &-item
+            height: 40px
+            font-size: 16px
+            line-height: 18px
+            letter-spacing: 0.48px
+          &.you
+            .you
+              font-size: 16px
+              line-height: 18px
+              padding-top: 1px
+      &__bottom
+        margin-top: 30px
+    .tournament
+      margin-top: 50px
+      &:before
+        animation: smokeMove 15s ease-in-out infinite
+        top: -20px
+        width: 544px
+      &:after
+        display: none
+      &__decor
+        &-witch
+          display: none
+      &__bet
+        width: 100px
+      &__title
+        width: 607px
+      &__txt
+        max-width: 336px
+        letter-spacing: 0.48px
+        font-size: 16px
+        line-height: 18px
+        margin-bottom: 20px
+      &__container
+        width: 708px
+        height: 540px
+        margin-bottom: 110px
+      &__btn
+        bottom: 50px
+      .games
+        &__list
+          max-width: 630px
+          &-item
+            &-img
+              border-radius: 10px
+              width: 145px
+              height: 145px
+            &:nth-child(2),
+            &:nth-child(4)
+              margin-top: 15px
+            &:nth-child(6),
+            &:nth-child(8)
+              margin-top: 15px
+            &:nth-child(5),
+            &:nth-child(7)
+              margin-top: -15px
 
+  @media screen and (max-width: 767px)
+    .promo
+      background-position-y: 0
+      &__img
+        max-width: 600px
+      &__container
+        margin-top: 310px
+      &__btn
+        bottom: 87px
+        margin-left: 0
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+      &__info
+        margin-top: 130px
+    .gide
+      margin-top: 50px
+      background-position-y: 50px
+      &__block
+        &-joker
+          width: 170px
+          &.showItem
+            left: -180px
+        &-magician
+          width: 210px
+          &.showItem
+            right: -180px
+    .leaderboard
+      .table
+        transform: scale(0.8)
+        transform-origin: top
+      &__decor
+        .arrow-r
+          right: 0
+      &__bottom
+        margin-top: -100px
+    .tournament
+      &__container
+        transform: scale(0.8)
+        transform-origin: top
+        margin-bottom: 0
 
+  @media screen and (max-width: 600px)
+    .btn
+      min-width: 175px
+      height: 95px
+      font-size: 20px
+      letter-spacing: 0.8px
+      padding-top: 6px
+      &:before
+        top: 4px
+        width: 95%
+    ._button
+      min-width: 200px
+      max-width: fit-content
+      gap: 12px
+      &-img
+        width: 24px
+        height: 24px
+    .promo
+      background-position-y: -79px
+      &__btn
+        bottom: 116px
+      &__img
+        max-width: 390px
+        top: 0
+        margin-top: 0
+      &__dates
+        transform: rotate(-1.065deg)
+        max-width: 375px
+        height: 40px
+        max-height: 40px
+        font-size: 16px
+        line-height: 18px
+        letter-spacing: 0.48px
+      &__container
+        margin-top: 190px
+      &__info
+        margin-top: 110px
+        font-size: 14px
+        line-height: 18px
+        max-width: 347px
+    .gide
+      margin-top: 30px
+      background-position-y: 82px
+      background-size: 132% 100%
+      &:after
+        bottom: -122px
+      &__decor
+        width: 300px
+        .ghost-r
+          right: 0
+          animation: ghostMove 5s infinite ease-in-out
+          width: 45px
+      &__bet
+        width: 90px
+      &__title
+        width: 347px
+        z-index: 3
+      &__block
+        padding-top: 97px
+        height: 295px
+        &:before
+          width: 340px
+          height: 400px
+        &:after
+          width: 376px
+        &-decor
+          &:after
+            z-index: 3
+            position: absolute
+            content: ""
+            left: -33px
+            bottom: -11px
+            width: 273px
+            height: 150px
+            background: linear-gradient(0deg, #0D1225 0%, rgba(13, 18, 37, 0.00) 100%)
+        &-balls
+          width: 89px
+          top: 0
+        .balls-l
+          left: -60px
+        .balls-r
+          right: -60px
+        &-prize
+          max-width: 140px
+          font-size: 26.5px
+          letter-spacing: 0.795px
+          line-height: 28px
+          span
+            font-size: 24px
+            line-height: 25px
+            letter-spacing: 0.723px
+        &-txt
+          margin-top: 13px
+          max-width: 205px
+          font-size: 14px
+          line-height: 19px
+          z-index: 4
+        &-joker
+          width: 146px
+          bottom: -125px
+          &.showItem
+            left: -120px
+        &-magician
+          width: 175px
+          bottom: -125px
+          &.showItem
+            right: -120px
+      &__btn
+        bottom: -84px
+    .leaderboard
+      background: none
+      margin-top: 195px
+      &:before
+        width: 375px
+      &__pumpkin
+        width: 70px
+        &:after
+          width: 30px
+          top: 3px
+      &__title
+        width: 315px
+        margin-top: -20px
+      .arrow-l,
+      .arrow-r
+        display: none
+      &__decor
+        &-ghost
+          display: none
+        &-witch
+          display: none
+      .table
+        padding: 38px 19px 30px 19px
+        transform: scale(1)
+        width: 375px
+        height: 556px
+        &__txt
+          width: 237px
+          font-size: 14px
+          line-height: 17px
+          letter-spacing: 0.42px
+          margin-bottom: 12px
+        &__tubs
+          gap: 10px
+          &:after
+            width: 347px
+            bottom: -16px
+          &-week
+            width: 82px
+            height: 40px
+            span
+              padding-top: 3px
+              text-shadow: 0 1.185px 1.185px rgba(13, 18, 37, 0.50)
+              font-size: 14px
+              letter-spacing: 0.42px
+        &__head
+          padding: 26px 10px 10px 10px
+          gap: 10px
+          justify-content: flex-start
+          &-item
+            font-size: 14px
+            line-height: 15px
+            letter-spacing: 0.42px
+            &:nth-child(1)
+              width: 45px
+            &:nth-child(2)
+              width: 60px
+            &:nth-child(3)
+              width: 65px
+            &:nth-child(4)
+              width: 71px
+            &:nth-child(5)
+              width: 35px
+        &__body
+          padding-left: 10px
+          &-scroll
+            max-height: 215px
+            padding-right: 5px
+        &__row
+          height: 34px
+          gap: 10px
+          &-item
+            height: 34px
+            font-size: 14px
+            letter-spacing: 0.42px
+            white-space: nowrap
+            &:nth-child(1)
+              width: 45px
+            &:nth-child(2)
+              width: 60px
+            &:nth-child(3)
+              width: 65px
+            &:nth-child(4)
+              width: 71px
+            &:nth-child(5)
+              width: 35px
+          &.you
+            background-size: 100% 104%
+            .you
+              font-size: 14px
+              line-height: 14px
+              padding-top: 2px
+              margin-left: 5px
+        &__note
+          &:before
+            width: 54px
+            left: 30%
+          &:after
+            width: 54px
+            left: 70%
+      &__bottom
+        margin-top: 30px
+        flex-direction: column
+        justify-content: center
+        align-items: center
+    .tournament
+      &:before
+        width: 375px
+        top: 0
+      &:after
+        z-index: 0
+        position: absolute
+        content: ""
+        left: 0
+        bottom: 50%
+        width: 100%
+        height: 180px
+        background: linear-gradient(0deg, #0D1225 20%, rgba(13, 18, 37, 0.00) 100%)
+      &__title
+        width: 374px
+      &__txt
+        max-width: 303px
+        margin-bottom: 10px
+      &__container
+        width: 375px
+        height: 547px
+        margin-bottom: 100px
+        transform: scale(1)
+        margin-top: -25px
+        padding-top: 39px
+      &__btn
+        bottom: 50px
+      .games
+        &__list
+          max-width: 346px
+          &-item
+            &-img
+              border-radius: 10px
+              width: 108px
+              height: 108px
+            &.mob
+              display: flex
+            &:nth-child(2),
+            &:nth-child(5),
+            &:nth-child(8)
+              margin-top: 15px
+            &:nth-child(4),
+            &:nth-child(6),
+            &:nth-child(7),
+            &:nth-child(9)
+              margin-top: 6px
+            &:nth-child(4)
+              margin-top: -20px
+            &:nth-child(6)
+              margin-top: -1px
+            &:nth-child(7),
+            &:nth-child(9)
+              margin-top: -20px
+    .popup
+      bottom: -95px
+      transform: translateX(-50%) scale(0.7)
+      top: auto
+      &.tableInfo
+        bottom: -115px
 
+  @media screen and (max-width: 390px)
+    .promo
+      &__img
+        max-width: 375px
+      &__dates
+        margin-top: 65px
 
+  @media screen and (max-width: 374px)
+    .promo
+      &__img
+        max-width: 330px
+        margin-top: -10px
+      &__dates
+        margin-top: 15px
+        height: 30px
+        font-size: 14px
+        line-height: 15px
+        max-width: 330px
+      &__info
+        max-width: 320px
+    .gide
+      &__title
+        width: 320px
+        margin-bottom: 15px
+      &__block
+        &-joker
+          width: 120px
+          &.showItem
+            left: -75px
+        &-magician
+          width: 145px
+          &.showItem
+            right: -80px
+    .leaderboard
+      .table
+        margin-top: -28px
+        transform: scale(0.85)
+      &__title
+        width: 300px
+      &__bottom
+        margin-top: -50px
+    .tournament
+      &__title
+        width: 360px
+      &__container
+        transform: scale(0.85)
+        transform-origin: top
+        margin-bottom: 30px
+    .popup
+      bottom: -125px
+      transform: translateX(-50%) scale(0.6)
+      &.tableInfo
+        bottom: -155px
 
+  /***************************** Landscape ****************************************/
 
+  @media screen and (max-width: 950px) and (max-height: 500px) and (orientation: landscape)
+    .promo
+      background-position: 50% 0
+    .popup
+      transform: translate(-50%, -50%) scale(0.6)
+      &.tableInfo
+        transform: translate(-50%, -50%) scale(0.5)
+
+  @media screen and (max-width: 950px) and (max-height: 390px) and (orientation: landscape)
+    .popup
+      transform: translate(-50%, -50%) scale(0.5)
+      &.tableInfo
+        transform: translate(-50%, -50%) scale(0.4)
+
+  @media screen and (max-width: 950px) and (max-height: 330px) and (orientation: landscape)
+    .popup
+      transform: translate(-50%, -50%) scale(0.43)
+      &.tableInfo
+        transform: translate(-50%, -50%) scale(0.35)
 
