@@ -539,3 +539,4 @@ document.querySelector('.popup-wrap').addEventListener('click', (e) => {
 document.querySelectorAll('.popup__close').forEach(closeBtn => {
     closeBtn.addEventListener('click', closeAllPopups);
 });
+
