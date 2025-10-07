@@ -1,14 +1,34 @@
 @import "../var"
 
 picture
-  &.ro
+  &.hr
     display: inline-block
   &.en
     display: none
 
 .fav-page.en
   picture
-    &.ro
+    &.hr
       display: none
     &.en
       display: inline-block
+  .gide
+    &__block
+      &-txt
+        @media screen and (max-width: 1050px)
+          font-size: 17px
+        @media screen and (max-width: 600px)
+          font-size: 13px
+          line-height: 16px
+  .tournament
+    &__title
+      @media screen and (max-width: 380px)
+        width: 320px
+  ._button
+    @media screen and (max-width: 368px)
+      gap: 10px
+    &-txt
+      @media screen and (max-width: 368px)
+      font-size: 15px
+
+

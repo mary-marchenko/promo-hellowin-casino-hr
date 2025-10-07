@@ -154,6 +154,8 @@
                         }
 
                     })
+                    showGamesByDate(activeWeek);
+
                     document.addEventListener("click", e =>{
                         console.log("click")
                         console.log(activeWeek)
@@ -357,12 +359,10 @@
         const topUsers = users.slice(0, 20);
         const isTopCurrentUser = currentUser && users.slice(0, 8).some(user => user.userid === currentUserId);
 
-        // --- 1. Рендеримо топ-20 у resultsTable ---
         topUsers.forEach(user => {
             displayUser(user, user.userid === currentUserId, resultsTable, topUsers, isTopCurrentUser, week);
         });
 
-        // --- 2. Визначаємо клас withoutYou для resultsTable ---
         if (!currentUser || isTopCurrentUser) {
             resultsTable.classList.add('withoutYou');
             return; // якщо юзер не в таблиці, resultsTableOther не рендеримо
@@ -370,9 +370,8 @@
             resultsTable.classList.remove('withoutYou');
         }
 
-        // --- 3. Юзер не у топ-8 (поточний користувач місце ≥ 9) ---
+        // Юзер не у топ-8 (місце ≥ 9)
         if (currentUser && !isTopCurrentUser) {
-            // рендеримо currentUser і сусідів у resultsTableOther
             displayUser(currentUser, true, resultsTableOther, users, false, week);
         }
 
@@ -401,7 +400,7 @@
 
             userRow.innerHTML = `
             <div class="table__row-item">
-                ${userPlace < 10 ? '0' + userPlace : userPlace}
+                ${userPlace}
                 ${isCurrentUser && !neighbor ? '<span class="you">' + translateKey("you") + '</span>' : ''}
             </div>
             <div class="table__row-item">
@@ -412,9 +411,6 @@
             </div>
             <div class="table__row-item">
                 ${prizeKey ? translateKey(prizeKey) : ' - '}
-            </div>
-            <div class="table__row-item">
-                ${translateKey('wager1')}
             </div>
         `;
 
@@ -592,6 +588,16 @@
         document.body.style.overflow = 'auto';
     }
 
+    function showGamesByDate(activeWeekIndex) {
+        const allGamesLists = document.querySelectorAll('.games__list');
+        allGamesLists.forEach(list => list.classList.remove('active'));
+
+        const targetList = document.querySelector(`.games__list.week${activeWeekIndex}`);
+        if (targetList) {
+            targetList.classList.add('active');
+        }
+    }
+
     loadTranslations()
         .then(init) // запуск ініту сторінки
 
@@ -635,6 +641,18 @@
         unauthMsgs.forEach(item => item.classList.add('hide'));
         redirectBtns.forEach(item => item.classList.add('hide'));
         participateBtns.forEach(item => item.classList.remove('hide'));
+    });
+
+    const btnGames2 = document.querySelector(".btn-games2")
+    btnGames2.addEventListener("click", () =>{
+        let activeWeekIndex = 2
+        showGamesByDate(2);
+    });
+
+    const btnGames3 = document.querySelector(".btn-games3")
+    btnGames3.addEventListener("click", () =>{
+        let activeWeekIndex = 3
+        showGamesByDate(3);
     });
 
     document.querySelector('.btn-phase2').addEventListener('click', function() {

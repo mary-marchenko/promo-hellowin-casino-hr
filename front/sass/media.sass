@@ -186,6 +186,9 @@
       height: 110px
       font-size: 22px
       line-height: 22px
+      &.play-btn
+        font-size: 17px
+        line-height: 20px
     ._button
       min-width: 227px
       border-radius: 14px
@@ -348,6 +351,11 @@
           &-scroll
             max-height: 208px
             padding-right: 10px
+            &.withoutYou
+              max-height: 336px
+              margin-bottom: 10px
+          &-other
+            padding-right: 10px
         &__row
           height: 40px
           &-item
@@ -369,7 +377,9 @@
         top: -20px
         width: 544px
       &:after
-        display: none
+        height: 139px
+        background: linear-gradient(0deg, #0D1225 0%, rgba(13, 18, 37, 0.00) 100%)
+        bottom: 119px
       &__decor
         &-witch
           display: none
@@ -378,7 +388,7 @@
       &__title
         width: 607px
       &__txt
-        max-width: 336px
+        max-width: 410px
         letter-spacing: 0.48px
         font-size: 16px
         line-height: 18px
@@ -386,9 +396,9 @@
       &__container
         width: 708px
         height: 540px
-        margin-bottom: 110px
+        margin-bottom: 90px
       &__btn
-        bottom: 150px
+        bottom: 143px
       .games
         &__list
           max-width: 630px
@@ -457,6 +467,9 @@
       font-size: 20px
       letter-spacing: 0.8px
       padding-top: 6px
+      &.play-btn
+        font-size: 15px
+        line-height: 18px
       &:before
         top: 4px
         width: 95%
@@ -470,7 +483,7 @@
     .promo
       background-position-y: -79px
       &__btn
-        bottom: 116px
+        bottom: 100px
       &__img
         max-width: 390px
         top: 0
@@ -478,7 +491,7 @@
         margin-right: 25px
       &__dates
         transform: rotate(-1.065deg)
-        max-width: 375px
+        max-width: 390px
         height: 40px
         max-height: 40px
         font-size: 16px
@@ -614,20 +627,21 @@
             line-height: 15px
             letter-spacing: 0.42px
             &:nth-child(1)
-              width: 45px
+              width: 55px
             &:nth-child(2)
-              width: 60px
+              width: 82px
             &:nth-child(3)
-              width: 65px
+              width: 75px
             &:nth-child(4)
-              width: 71px
-            &:nth-child(5)
-              width: 35px
+              width: 72px
         &__body
           padding-left: 10px
           &-scroll
             max-height: 215px
             padding-right: 5px
+            &.withoutYou
+              max-height: 289px
+              margin-bottom: 10px
         &__row
           height: 34px
           gap: 10px
@@ -637,15 +651,13 @@
             letter-spacing: 0.42px
             white-space: nowrap
             &:nth-child(1)
-              width: 45px
+              width: 55px
             &:nth-child(2)
-              width: 60px
+              width: 82px
             &:nth-child(3)
-              width: 65px
+              width: 75px
             &:nth-child(4)
-              width: 71px
-            &:nth-child(5)
-              width: 35px
+              width: 72px
           &.you
             background-size: 100% 104%
             .you
@@ -689,24 +701,27 @@
         position: absolute
         content: ""
         left: 0
-        bottom: 50%
+        bottom: 100px
         width: 100%
         height: 180px
         background: linear-gradient(0deg, #0D1225 20%, rgba(13, 18, 37, 0.00) 100%)
       &__title
         width: 374px
       &__txt
-        max-width: 303px
-        margin-bottom: 10px
+        font-size: 14px
+        letter-spacing: 0.42px
+        line-height: 18px
+        max-width: 330px
+        margin-bottom: 20px
       &__container
         width: 375px
         height: 547px
-        margin-bottom: 100px
+        margin-bottom: 85px
         transform: scale(1)
         margin-top: -25px
         padding-top: 39px
       &__btn
-        bottom: 50px
+        bottom: 150px
       .games
         &__list
           max-width: 346px
@@ -720,19 +735,19 @@
             &:nth-child(2),
             &:nth-child(5),
             &:nth-child(8)
-              margin-top: 15px
+              margin-top: 13px
             &:nth-child(4),
             &:nth-child(6),
             &:nth-child(7),
             &:nth-child(9)
-              margin-top: 6px
+              margin-top: 10px
             &:nth-child(4)
-              margin-top: -20px
+              margin-top: -10px
             &:nth-child(6)
-              margin-top: -1px
+              margin-top: 1px
             &:nth-child(7),
             &:nth-child(9)
-              margin-top: -20px
+              margin-top: -10px
     .popup
       bottom: -95px
       transform: translateX(-50%) scale(0.7)
@@ -787,7 +802,7 @@
       &__container
         transform: scale(0.85)
         transform-origin: top
-        margin-bottom: 30px
+        margin-bottom: 10px
     .popup
       bottom: -125px
       transform: translateX(-50%) scale(0.6)
