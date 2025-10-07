@@ -30,30 +30,33 @@
             }
         }
 
+        console.log(activeWeekIndex)
         return activeWeekIndex;
     };
 
-    const promoStartDate = new Date("2025-05-05T00:00:00");
-    const weekDuration = 10;
+    const promoStartDate = new Date("2025-10-13T00:00:00");
+    const weekDuration = 7;
 
     let isVerifiedUser = false;
 
-    let periodAmount = 2 // кількість періодів в акції, треба для кешування інфи з табли
+    let periodAmount = 3 // кількість періодів в акції, треба для кешування інфи з табли
 
     let tableData = []
     let activeWeek = getActiveWeek(promoStartDate, weekDuration) || 1;
-    // let activeWeek = 2
 
-    if (activeWeek > 2) activeWeek = 2
+    if (activeWeek > 3) activeWeek = 3
 
 
     const mainPage = document.querySelector(".fav-page"),
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
         participateBtns = document.querySelectorAll('.part-btn'),
-        redirectBtns = document.querySelectorAll('.btn-join'),
-        loader = document.querySelector(".spinner-overlay")
+        redirectBtns = document.querySelectorAll('.play-btn'),
+        loader = document.querySelector(".spinner-overlay"),
+        resultsTable = document.querySelector('#table'),
+        resultsTableOther = document.querySelector('#tableOther'),
+        tableTabs = document.querySelectorAll('.table__tabs-week')
 
-    const hrLeng = document.querySelector('#ukLeng');
+    const hrLeng = document.querySelector('#hrLeng');
     const enLeng = document.querySelector('#enLeng');
 
     const toggleClasses = (elements, className) => elements.forEach(el => el.classList.toggle(`${className}`));
@@ -71,7 +74,7 @@
     if (hrLeng) locale = 'hr';
     if (enLeng) locale = 'en';
 
-    let debug = true
+    let debug = false
 
     if (debug) hideLoader()
 
@@ -80,6 +83,7 @@
 
     // let userId = null;
     let userId = Number(sessionStorage.getItem("userId")) ?? null
+
 
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
@@ -135,13 +139,72 @@
                 .then(loadUsers)
                 .then(() =>{
                     setTimeout(hideLoader, 300);
-                    document.querySelectorAll(".table__tabs-item").forEach((tab, i) =>{
+                    document.querySelectorAll(".table__tabs-week").forEach((tab, i) =>{
                         tab.classList.remove('active');
                         if(i === activeWeek - 1) tab.classList.add('active');
                     })
-                    // renderUsers(activeWeek, tableData);
+                    renderUsers(activeWeek, tableData);
                     participateBtns.forEach(btn => btn.addEventListener('click', participate));
+
+                    tableTabs.forEach(tab =>{
+                        if(Number(tab.getAttribute("data-week")) > activeWeek){
+                            tab.style.pointerEvents = "none";
+                        }else{
+                            tab.style.pointerEvents = "initial";
+                        }
+
+                    })
+                    document.addEventListener("click", e =>{
+                        console.log("click")
+                        console.log(activeWeek)
+                        if(e.target.closest(".table__tabs-week")){
+                            if(e.target.closest(".table__tabs-week").classList.contains("active")) return;
+                            if(Number(e.target.closest(".table__tabs-week").getAttribute("data-week")) > activeWeek) {
+                                return
+                            }
+                            e.target.closest(".table__tabs-week").style.pointerEvents = "initial";
+                            tableTabs.forEach(tab =>{
+                                tab.classList.remove("active");
+                            })
+                            let tabWeek = e.target.closest(".table__tabs-week").getAttribute("data-week");
+                            e.target.closest(".table__tabs-week").classList.add("active");
+                            renderUsers(tabWeek, tableData)
+                            console.log("clicked tab:", tabWeek);
+                        }
+                    })
+
+                    showItemsOnScroll(".gide__block")
+                    showItemsOnScroll(".tournament__decor")
+
+                    document.querySelector('.button-earnPointsInfo').addEventListener('click', () => {
+                        openPopupByAttr('earnPointsInfo');
+                    });
+
+                    document.querySelector('.button-table').addEventListener('click', () => {
+                        openPopupByAttr('tableInfo');
+                    });
+
+                    document.querySelector('.gide__button').addEventListener('click', () => {
+                        openPopupByAttr('gideInfo');
+                    });
+
+                    document.querySelector('.tournament__button').addEventListener('click', () => {
+                        openPopupByAttr('rules');
+                    });
+
+                    document.querySelector('.popup-wrap').addEventListener('click', (e) => {
+                        const openPopupEl = document.querySelector('.popup.active');
+                        const isInside = openPopupEl ? openPopupEl.contains(e.target) : false;
+                        if (openPopupEl && !isInside) {
+                            closeAllPopups();
+                        }
+                    });
+
+                    document.querySelectorAll('.popup__close').forEach(closeBtn => {
+                        closeBtn.addEventListener('click', closeAllPopups);
+                    });
                 })
+
             }
 
         const waitForUserId = new Promise((resolve) => {
@@ -249,7 +312,7 @@
         if (locale === 'en') {
             mainPage.classList.add('en');
         }
-        refreshLocalizedClass(mainPage);
+        refreshLocalizedClass();
     }
 
     function refreshLocalizedClass(element, baseCssClass) {
@@ -262,7 +325,7 @@
         element.classList.add(baseCssClass + locale);
     }
 
-    function renderUsers(weekNum, userData = []) {
+    function renderUsers(weekNum, userData) {
         weekNum = Number(weekNum);
         userData = userData.find(week => {
             return week.week === weekNum
@@ -270,7 +333,7 @@
 
         console.log(userData);
 
-        const currentUser = userData.find(user => user.userid === userId);
+        let currentUser = userData.find(user => user.userid === userId);
 
         console.log(userId)
         console.log(currentUser)
@@ -278,6 +341,7 @@
 
         if(userId && !currentUser && isVerifiedUser){
             userData = [...userData, {userid: userId, points: 0}]
+            currentUser = userData.find(user => user.userid === userId)
         }
         console.log(userData);
 
@@ -286,29 +350,29 @@
 
     function populateUsersTable(users, currentUserId, week, currentUser, isVerifiedUser) {
 
-        console.log(users);
         resultsTable.innerHTML = '';
         resultsTableOther.innerHTML = '';
         if (!users?.length) return;
 
-        const isTopCurrentUser = currentUser && users.slice(0, 10).some(user => user.userid === currentUserId);
+        const topUsers = users.slice(0, 20);
+        const isTopCurrentUser = currentUser && users.slice(0, 8).some(user => user.userid === currentUserId);
 
-        const topUsersLength = !userId || isTopCurrentUser  ? 13 : 10;
-
-        const topUsers = users.slice(0, topUsersLength);
-
-        // console.log(users);
+        // --- 1. Рендеримо топ-20 у resultsTable ---
         topUsers.forEach(user => {
             displayUser(user, user.userid === currentUserId, resultsTable, topUsers, isTopCurrentUser, week);
         });
-        // console.log(isTopCurrentUser)
-        console.log(isVerifiedUser)
-        if(isVerifiedUser && !currentUser) {
-            console.log('user verified');
-            displayUser(currentUser, true, resultsTableOther, users, false, week);
+
+        // --- 2. Визначаємо клас withoutYou для resultsTable ---
+        if (!currentUser || isTopCurrentUser) {
+            resultsTable.classList.add('withoutYou');
+            return; // якщо юзер не в таблиці, resultsTableOther не рендеримо
+        } else {
+            resultsTable.classList.remove('withoutYou');
         }
-        if (!isTopCurrentUser && currentUser) {
-            isVerifiedUser = false;
+
+        // --- 3. Юзер не у топ-8 (поточний користувач місце ≥ 9) ---
+        if (currentUser && !isTopCurrentUser) {
+            // рендеримо currentUser і сусідів у resultsTableOther
             displayUser(currentUser, true, resultsTableOther, users, false, week);
         }
 
@@ -349,10 +413,26 @@
             <div class="table__row-item">
                 ${prizeKey ? translateKey(prizeKey) : ' - '}
             </div>
+            <div class="table__row-item">
+                ${translateKey('wager1')}
+            </div>
         `;
 
             table.append(userRow);
         };
+        // if (isCurrentUser && !isTopCurrentUser) {
+        //     const index = users.indexOf(user);
+        //     if (index !== 10 && users[index - 1]) {
+        //         renderRow(users[index - 1], { neighbor: true });
+        //     }
+        //     renderRow(user, { highlight: true });
+        //     if (users[index + 1]) {
+        //         renderRow(users[index + 1], { neighbor: true });
+        //     }
+        // } else {
+        //     renderRow(user);
+        // }
+
         if (isCurrentUser && !isTopCurrentUser) {
             const index = users.indexOf(user);
             if (users[index - 1]) {
@@ -383,16 +463,21 @@
     }
 
     function getPrizeTranslationKey(place, week) {
-        if (place <= 3) return `prize_${week}-${place}`;
-        if (place <= 10) return `prize_${week}-4-10`;
-        if (place <= 25) return `prize_${week}-11-25`;
-        if (place <= 50) return `prize_${week}-26-50`;
-        if (place <= 75) return `prize_${week}-51-75`;
-        if (place <= 100) return `prize_${week}-76-100`;
-        if (place <= 125) return `prize_${week}-101-125`;
-        if (place <= 150) return `prize_${week}-126-150`;
-        if (place <= 175) return `prize_${week}-151-175`;
-        if (place <= 200) return `prize_${week}-176-200`;
+        if (place <= 3) return `prize${place}`;
+        if (place <= 10) return `prize4`;
+        if (place <= 19) return `prize5`;
+        if (place === 20) return `prize6`;
+        if (place <= 29) return `prize7`;
+        if (place === 30) return `prize8`;
+        if (place <= 39) return `prize9`;
+        if (place === 40) return `prize10`;
+        if (place <= 49) return `prize11`;
+        if (place === 50) return `prize12`;
+        if (place <= 69) return `prize13`;
+        if (place === 70) return `prize14`;
+        if (place <= 89) return `prize15`;
+        if (place === 90) return `prize16`;
+        if (place <= 100) return `prize17`;
     }
 
     function participate() {
@@ -409,7 +494,6 @@
             body: JSON.stringify(params)
         }).then(res => res.json())
             .then(res => {
-                console.log(res);
                 loaderBtn = true
                 toggleClasses(participateBtns, "loader")
                 toggleTranslates(participateBtns, "loader")
@@ -461,106 +545,161 @@
         });
     }
 
+    function showItemsOnScroll(itemClass) {
+        const Blocks = document.querySelectorAll(itemClass);
+        if (!Blocks.length) return;
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+                    setTimeout(() => {
+                        entry.target.querySelector(".gide__block-joker")?.classList.add("showItem")
+                        entry.target.querySelector(".gide__block-magician")?.classList.add("showItem")
+                        observer.unobserve(entry.target);
+                    }, 200);
+                    setTimeout(() => {
+                        entry.target.querySelector(".tournament__witchGirl")?.classList.add("showItem")
+                        entry.target.querySelector(".tournament__ghostGirl")?.classList.add("showItem")
+                        observer.unobserve(entry.target);
+                    }, 600);
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        Blocks.forEach(item => observer.observe(item));
+    }
+
+    function openPopupByAttr(popupAttr) {
+        const allPopups = document.querySelectorAll('.popup');
+        allPopups.forEach(p => p.classList.remove('active'));
+        document.body.style.overflow = 'hidden';
+
+        const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
+        if (targetPopup) {
+            targetPopup.classList.add('active');
+            document.querySelector('.popup-wrap').classList.remove('opacity');
+        }
+    }
+
+    function closeAllPopups() {
+        const popupWrap = document.querySelector('.popup-wrap');
+        const activePopup = document.querySelector('.popup.active');
+
+        document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
+        popupWrap.classList.add('opacity');
+        document.body.style.overflow = 'auto';
+    }
+
     loadTranslations()
         .then(init) // запуск ініту сторінки
 
+
+    // TEST
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".menu-btn")?.addEventListener("click", () => {
+            document.querySelector(".menu-test")?.classList.toggle("hide");
+        });
+    });
+
+    document.querySelector('.dark-btn').addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+    });
+
+    const lngBtn = document.querySelector(".lng-btn")
+
+    lngBtn.addEventListener("click", () => {
+        if (sessionStorage.getItem("locale")) {
+            sessionStorage.removeItem("locale");
+        } else {
+            sessionStorage.setItem("locale", "en");
+        }
+        window.location.reload();
+    });
+
+    const authBtn = document.querySelector(".auth-btn")
+    const betBtn = document.querySelector(".btn-bet-online")
+
+    betBtn.addEventListener("click", () =>{
+        if(userId){
+            sessionStorage.removeItem("userId")
+        }else{
+            sessionStorage.setItem("userId", "999")
+        }
+        window.location.reload()
+    });
+
+    authBtn.addEventListener("click", () =>{
+        unauthMsgs.forEach(item => item.classList.add('hide'));
+        redirectBtns.forEach(item => item.classList.add('hide'));
+        participateBtns.forEach(item => item.classList.remove('hide'));
+    });
+
+    document.querySelector('.btn-phase2').addEventListener('click', function() {
+        let activeWeek = 2
+        renderUsers(activeWeek, tableData);
+        document.querySelectorAll(".table__tabs-week").forEach((tab, i) =>{
+            tab.classList.remove('active');
+            if(i === activeWeek - 1) tab.classList.add('active');
+        })
+        tableTabs.forEach(tab =>{
+            if(Number(tab.getAttribute("data-week")) > activeWeek){
+                tab.style.pointerEvents = "none";
+            }else{
+                tab.style.pointerEvents = "initial";
+            }
+
+        })
+        document.addEventListener("click", e =>{
+            if(e.target.closest(".table__tabs-week")){
+                if(Number(e.target.closest(".table__tabs-week").getAttribute("data-week")) > activeWeek) {
+                    return
+                }
+                e.target.closest(".table__tabs-week").style.pointerEvents = "initial";
+                tableTabs.forEach(tab =>{
+                    tab.classList.remove("active");
+                })
+                let tabWeek = e.target.closest(".table__tabs-week").getAttribute("data-week");
+                e.target.closest(".table__tabs-week").classList.add("active");
+                renderUsers(tabWeek)
+            }
+        })
+
+    });
+
+    document.querySelector('.btn-phase3').addEventListener('click', function() {
+        let activeWeek = 3
+        renderUsers(activeWeek, tableData);
+        document.querySelectorAll(".table__tabs-week").forEach((tab, i) =>{
+            tab.classList.remove('active');
+            if(i === activeWeek - 1) tab.classList.add('active');
+        })
+        tableTabs.forEach(tab =>{
+            if(Number(tab.getAttribute("data-week")) > activeWeek){
+                tab.style.pointerEvents = "none";
+            }else{
+                tab.style.pointerEvents = "initial";
+            }
+
+        })
+        document.addEventListener("click", e =>{
+            if(e.target.closest(".table__tabs-week")){
+                if(Number(e.target.closest(".table__tabs-week").getAttribute("data-week")) > activeWeek) {
+                    return
+                }
+                e.target.closest(".table__tabs-week").style.pointerEvents = "initial";
+                tableTabs.forEach(tab =>{
+                    tab.classList.remove("active");
+                })
+                let tabWeek = e.target.closest(".table__tabs-week").getAttribute("data-week");
+                e.target.closest(".table__tabs-week").classList.add("active");
+                renderUsers(tabWeek)
+            }
+        })
+
+    });
 })();
 
-showItemsOnScroll(".gide__block")
-showItemsOnScroll(".tournament__decor")
-
-
-function showItemsOnScroll(itemClass) {
-    const Blocks = document.querySelectorAll(itemClass);
-    if (!Blocks.length) return;
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-                setTimeout(() => {
-                    entry.target.querySelector(".gide__block-joker")?.classList.add("showItem")
-                    entry.target.querySelector(".gide__block-magician")?.classList.add("showItem")
-                    observer.unobserve(entry.target);
-                }, 200);
-                setTimeout(() => {
-                    entry.target.querySelector(".tournament__witchGirl")?.classList.add("showItem")
-                    entry.target.querySelector(".tournament__ghostGirl")?.classList.add("showItem")
-                    observer.unobserve(entry.target);
-                }, 600);
-            }
-        });
-    }, {
-        threshold: 0.3
-    });
-
-    Blocks.forEach(item => observer.observe(item));
-}
-
-function openPopupByAttr(popupAttr) {
-    const allPopups = document.querySelectorAll('.popup');
-    allPopups.forEach(p => p.classList.remove('active'));
-    document.body.style.overflow = 'hidden';
-
-    const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
-    if (targetPopup) {
-        targetPopup.classList.add('active');
-        document.querySelector('.popup-wrap').classList.remove('opacity');
-    }
-}
-
-function closeAllPopups() {
-    const popupWrap = document.querySelector('.popup-wrap');
-    const activePopup = document.querySelector('.popup.active');
-
-    document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
-    popupWrap.classList.add('opacity');
-    document.body.style.overflow = 'auto';
-}
-
-document.querySelector('.button-earnPointsInfo').addEventListener('click', () => {
-    openPopupByAttr('earnPointsInfo');
-});
-
-document.querySelector('.button-table').addEventListener('click', () => {
-    openPopupByAttr('tableInfo');
-});
-
-document.querySelector('.gide__button').addEventListener('click', () => {
-    openPopupByAttr('gideInfo');
-});
-
-document.querySelector('.popup-wrap').addEventListener('click', (e) => {
-    const openPopupEl = document.querySelector('.popup.active');
-    const isInside = openPopupEl ? openPopupEl.contains(e.target) : false;
-    if (openPopupEl && !isInside) {
-        closeAllPopups();
-    }
-});
-
-document.querySelectorAll('.popup__close').forEach(closeBtn => {
-    closeBtn.addEventListener('click', closeAllPopups);
-});
-
-// TEST
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".menu-btn")?.addEventListener("click", () => {
-        document.querySelector(".menu-test")?.classList.toggle("hide");
-    });
-});
-
-document.querySelector('.dark-btn').addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-});
-
-const lngBtn = document.querySelector(".lng-btn")
-
-lngBtn.addEventListener("click", () => {
-    if (sessionStorage.getItem("locale")) {
-        sessionStorage.removeItem("locale");
-    } else {
-        sessionStorage.setItem("locale", "en");
-    }
-    window.location.reload();
-});
 

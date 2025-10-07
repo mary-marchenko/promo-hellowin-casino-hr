@@ -317,7 +317,7 @@
           line-height: 23px
           letter-spacing: 0.48px
           margin-bottom: 22px
-        &__tubs
+        &__tabs
           gap: 15px
           &:after
             width: 630px
@@ -388,7 +388,7 @@
         height: 540px
         margin-bottom: 110px
       &__btn
-        bottom: 50px
+        bottom: 150px
       .games
         &__list
           max-width: 630px
@@ -592,7 +592,7 @@
           line-height: 17px
           letter-spacing: 0.42px
           margin-bottom: 12px
-        &__tubs
+        &__tabs
           gap: 10px
           &:after
             width: 347px
@@ -649,10 +649,25 @@
           &.you
             background-size: 100% 104%
             .you
-              font-size: 14px
+              font-size: 13px
               line-height: 14px
-              padding-top: 2px
-              margin-left: 5px
+              padding-top: 3px
+              margin-left: 4px
+            &.place1, &.place2, &.place3
+              .table__row-item
+                &:nth-child(1)
+                  &::after
+                    display: none
+              .you
+                padding-left: 15px
+
+          &.place1, &.place2, &.place3
+            .table__row-item
+              &:nth-child(1)
+                &::after
+                  width: 16px
+                  height: 18px
+                  margin-left: 5px
         &__note
           &:before
             width: 54px

@@ -4,7 +4,8 @@ button.menu-btn menu
     button.lng-btn en
     button.auth-btn auth
     button.btn-bet-online play
-    button.secondPer active table
+    button.btn-phase2 phase 2
+    button.btn-phase3 phase 3
 .fav-page.loading#hellowin
     .spinner-overlay
         .spinner
@@ -93,12 +94,12 @@ button.menu-btn menu
                 img(src="img/table/table-title-desc-en.png" alt="hellowin")
         .table
             .table__txt(data-translate="tableTxt") Dođi do vrha turnirske ljestvice i natječi se za nagrade!
-            .table__tubs
-                .table__tubs-week.week1.active
+            .table__tabs
+                .table__tabs-week.week1(data-week="1")
                     span(data-translate="week1") 1 tjedan
-                .table__tubs-week.week2
+                .table__tabs-week.week2(data-week="2")
                     span(data-translate="week2") 2 tjedan
-                .table__tubs-week.week3
+                .table__tabs-week.week3(data-week="3")
                     span(data-translate="week3") 3 tjedan
             .table__head
                 .table__head-item(data-translate="place") Mjesto
@@ -394,6 +395,9 @@ button.menu-btn menu
         a.tournament__btn.btn.unauth-msg(href="/login/" role="button" data-translate="loginBtn" data-promo="hellowin-hr-131025" data-button="authorization_footer") Prijavi se
         button.tournament__btn.btn.part-btn.hide(data-translate="partBtn" data-promo="hellowin-hr-131025" data-button="took-part_footer")
         a.tournament__btn.btn.play-btn.hide(data-translate="playBtn" href="/casino/hellowin/" data-promo="hellowin-hr-131025" data-button="playCasino_footer")
+        button.tournament__button._button
+            img._button-img(src="img/info-icon.svg" alt="info")
+            ._button-txt(data-translate="rules") Uvjeti i pravila
     .popup-wrap.opacity
         .popup.gideInfo(data-popup="gideInfo")
             .popup__close
@@ -406,9 +410,10 @@ button.menu-btn menu
                     p Click the “Participate” button once and play for 4 promotional weeks.
                     p Place bets on promotional games in the “Casino” section.
                 .popup__block-title(data-translate="gideInfoTitle2") 2. Score points
-                .popup__block-txt(data-translate="gideInfoTxt1")
+                .popup__block-txt(data-translate="gideInfoTxt2")
                     p Earn points and take prize places in the tournament table.
                     p From 15.07.2025 to 11.08.2025, spin slots in the "Casino" section and earn points. For every 1 EUR wagered in participating games, the participant receives 1 game point. The minimum bet in the Casino section is from 0.2 EURO.
+
         .popup.earnPointsInfo(data-popup="earnPointsInfo")
             .popup__close
                 img(src="img/close-icon.svg" alt="close").popup__close-img
@@ -419,6 +424,7 @@ button.menu-btn menu
                     p Mechanics:
                     p Points are accumulated based on the total amount of bets placed.
                     p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+
         .popup.tableInfo(data-popup="tableInfo")
             .popup__close
                 img(src="img/close-icon.svg" alt="close").popup__close-img
@@ -454,7 +460,7 @@ button.menu-btn menu
                         .popup__block-row
                             .popup__block-item(data-translate="place6") 6
                             .popup__block-item(data-translate="prize6") 50 EUR
-                            .popup__block-item(data-translate="wager") x1
+                            .popup__block-item(data-translate="wager1") x1
                         .popup__block-row
                             .popup__block-item(data-translate="place7") 7
                             .popup__block-item(data-translate="prize7") 50 EUR
@@ -499,10 +505,18 @@ button.menu-btn menu
                             .popup__block-item(data-translate="place17") 17
                             .popup__block-item(data-translate="prize17") 30 FS Play’n Go
                             .popup__block-item(data-translate="wager1") x1
-                        .popup__block-row
-                            .popup__block-item(data-translate="place18") 18
-                            .popup__block-item(data-translate="prize18") 30 FS Play’n Go
-                            .popup__block-item(data-translate="wager1") x1
 
-
-
+        .popup.rules(data-popup="rules")
+            .popup__close
+                img(src="img/close-icon.svg" alt="close").popup__close-img
+                .popup__close-txt(data-translate="close") Close
+            .popup__block
+                .popup__block-txt(data-translate="rulesTxt")
+                    p Points are accumulatedPoints are accumulatedPoints are accumulatedPoints are accumulatedPoints are accumulatedPoints are accumulatedPoints are accumulatedPoints are accumulated Points are accumulatedPoints are accumulatedPoints are accumulatedPoints are accumulated
+                    p Points are accumulated based on the total amount of bets placed.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
+                    p The minimum qualifying bet is 0.2 EUR. For every 1 EUR played in participating games, the player receives 1 point.
