@@ -229,15 +229,15 @@
             .then(json => {
                 i18nData = json;
                 translate();
-                const mutationObserver = new MutationObserver(function (mutations) {
-                    mutationObserver.disconnect();
-                    translate();
-                    mutationObserver.observe(targetNode, { childList: true, subtree: true });
-                });
-                mutationObserver.observe(document.getElementById("hellowin"), {
-                    childList: true,
-                    subtree: true
-                });
+                // const mutationObserver = new MutationObserver(function (mutations) {
+                //     mutationObserver.disconnect();
+                //     translate();
+                //     mutationObserver.observe(targetNode, { childList: true, subtree: true });
+                // });
+                // mutationObserver.observe(document.getElementById("hellowin"), {
+                //     childList: true,
+                //     subtree: true
+                // });
 
             });
     }
@@ -574,18 +574,17 @@
 
         const targetPopup = document.querySelector(`.popup[data-popup="${popupAttr}"]`);
         if (targetPopup) {
+            mainPage.classList.add('overlay');
             targetPopup.classList.add('active');
             document.querySelector('.popup-wrap').classList.remove('opacity');
         }
     }
 
     function closeAllPopups() {
-        const popupWrap = document.querySelector('.popup-wrap');
-        const activePopup = document.querySelector('.popup.active');
-
         document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
-        popupWrap.classList.add('opacity');
         document.body.style.overflow = 'auto';
+        document.querySelector('.popup-wrap').classList.add('opacity');
+        mainPage.classList.remove('overlay');
     }
 
     function showGamesByDate(activeWeekIndex) {
