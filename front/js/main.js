@@ -29,8 +29,6 @@
                 break;
             }
         }
-
-        console.log(activeWeekIndex)
         return activeWeekIndex;
     };
 
@@ -68,8 +66,8 @@
 
     let loaderBtn = false
 
-    // let locale = "en"
-    let locale = sessionStorage.getItem("locale") || "hr"
+    let locale = "hr"
+    // let locale = "hr"
 
     if (hrLeng) locale = 'hr';
     if (enLeng) locale = 'en';
@@ -82,8 +80,7 @@
     const translateState = true;
 
     // let userId = null;
-    let userId = Number(sessionStorage.getItem("userId")) ?? null
-
+    let userId = 1454805
 
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
@@ -157,8 +154,6 @@
                     showGamesByDate(activeWeek);
 
                     document.addEventListener("click", e =>{
-                        console.log("click")
-                        console.log(activeWeek)
                         if(e.target.closest(".table__tabs-week")){
                             if(e.target.closest(".table__tabs-week").classList.contains("active")) return;
                             if(Number(e.target.closest(".table__tabs-week").getAttribute("data-week")) > activeWeek) {
@@ -171,7 +166,7 @@
                             let tabWeek = e.target.closest(".table__tabs-week").getAttribute("data-week");
                             e.target.closest(".table__tabs-week").classList.add("active");
                             renderUsers(tabWeek, tableData)
-                            console.log("clicked tab:", tabWeek);
+
                         }
                     })
 
@@ -244,7 +239,6 @@
 
 
     function checkUserAuth() {
-        console.log(userId)
         if (userId) {
             for (const unauthMes of unauthMsgs) {
                 unauthMes.classList.add('hide');
@@ -255,7 +249,6 @@
                         participateBtns.forEach(item => item.classList.add('hide'));
                         redirectBtns.forEach(item => item.classList.remove('hide'));
                         isVerifiedUser = true;
-                        console.log(isVerifiedUser)
                     } else {
                         participateBtns.forEach(item => item.classList.remove('hide'));
                         redirectBtns.forEach(item => item.classList.add('hide'));
@@ -333,19 +326,12 @@
             return week.week === weekNum
         }).users;
 
-        console.log(userData);
-
         let currentUser = userData.find(user => user.userid === userId);
-
-        console.log(userId)
-        console.log(currentUser)
-        console.log(isVerifiedUser)
 
         if(userId && !currentUser && isVerifiedUser){
             userData = [...userData, {userid: userId, points: 0}]
             currentUser = userData.find(user => user.userid === userId)
         }
-        console.log(userData);
 
         populateUsersTable(userData, userId, weekNum, currentUser, isVerifiedUser);
     }
@@ -429,7 +415,9 @@
         //     renderRow(user);
         // }
 
-        if (isCurrentUser && !isTopCurrentUser) {
+        const isMainTable = table === resultsTable;
+
+        if (isCurrentUser && !isTopCurrentUser && !isMainTable) {
             const index = users.indexOf(user);
             if (users[index - 1]) {
                 renderRow(users[index - 1], { neighbor: true });
@@ -441,6 +429,19 @@
         } else {
             renderRow(user);
         }
+
+        // if (isCurrentUser && !isTopCurrentUser) {
+        //     const index = users.indexOf(user);
+        //     if (users[index - 1]) {
+        //         renderRow(users[index - 1], { neighbor: true });
+        //     }
+        //     renderRow(user, { highlight: true });
+        //     if (users[index + 1]) {
+        //         renderRow(users[index + 1], { neighbor: true });
+        //     }
+        // } else {
+        //     renderRow(user);
+        // }
     }
 
 
@@ -528,7 +529,7 @@
         for (let i = 1; i <= periodAmount; i++) {
             const week = i; // або будь-яка логіка для формування номера тижня
             const req = request(`/users/${week}${parametr ? parametr : ""}`).then(data => {
-                console.log(data);
+
                 tableData.push({ week, users: data });
             });
 
@@ -587,6 +588,7 @@
         mainPage.classList.remove('overlay');
     }
 
+
     function showGamesByDate(activeWeekIndex) {
         const allGamesLists = document.querySelectorAll('.games__list');
         allGamesLists.forEach(list => list.classList.remove('active'));
@@ -600,123 +602,6 @@
     loadTranslations()
         .then(init) // запуск ініту сторінки
 
-
-    // TEST
-
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelector(".menu-btn")?.addEventListener("click", () => {
-            document.querySelector(".menu-test")?.classList.toggle("hide");
-        });
-    });
-
-    document.querySelector('.dark-btn').addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-    });
-
-    const lngBtn = document.querySelector(".lng-btn")
-
-    lngBtn.addEventListener("click", () => {
-        if (sessionStorage.getItem("locale")) {
-            sessionStorage.removeItem("locale");
-        } else {
-            sessionStorage.setItem("locale", "en");
-        }
-        window.location.reload();
-    });
-
-    const authBtn = document.querySelector(".auth-btn")
-    const betBtn = document.querySelector(".btn-bet-online")
-
-    betBtn.addEventListener("click", () =>{
-        if(userId){
-            sessionStorage.removeItem("userId")
-        }else{
-            sessionStorage.setItem("userId", "999")
-        }
-        window.location.reload()
-    });
-
-    authBtn.addEventListener("click", () =>{
-        unauthMsgs.forEach(item => item.classList.add('hide'));
-        redirectBtns.forEach(item => item.classList.add('hide'));
-        participateBtns.forEach(item => item.classList.remove('hide'));
-    });
-
-    const btnGames2 = document.querySelector(".btn-games2")
-    btnGames2.addEventListener("click", () =>{
-        let activeWeekIndex = 2
-        showGamesByDate(2);
-    });
-
-    const btnGames3 = document.querySelector(".btn-games3")
-    btnGames3.addEventListener("click", () =>{
-        let activeWeekIndex = 3
-        showGamesByDate(3);
-    });
-
-    document.querySelector('.btn-phase2').addEventListener('click', function() {
-        let activeWeek = 2
-        renderUsers(activeWeek, tableData);
-        document.querySelectorAll(".table__tabs-week").forEach((tab, i) =>{
-            tab.classList.remove('active');
-            if(i === activeWeek - 1) tab.classList.add('active');
-        })
-        tableTabs.forEach(tab =>{
-            if(Number(tab.getAttribute("data-week")) > activeWeek){
-                tab.style.pointerEvents = "none";
-            }else{
-                tab.style.pointerEvents = "initial";
-            }
-
-        })
-        document.addEventListener("click", e =>{
-            if(e.target.closest(".table__tabs-week")){
-                if(Number(e.target.closest(".table__tabs-week").getAttribute("data-week")) > activeWeek) {
-                    return
-                }
-                e.target.closest(".table__tabs-week").style.pointerEvents = "initial";
-                tableTabs.forEach(tab =>{
-                    tab.classList.remove("active");
-                })
-                let tabWeek = e.target.closest(".table__tabs-week").getAttribute("data-week");
-                e.target.closest(".table__tabs-week").classList.add("active");
-                renderUsers(tabWeek)
-            }
-        })
-
-    });
-
-    document.querySelector('.btn-phase3').addEventListener('click', function() {
-        let activeWeek = 3
-        renderUsers(activeWeek, tableData);
-        document.querySelectorAll(".table__tabs-week").forEach((tab, i) =>{
-            tab.classList.remove('active');
-            if(i === activeWeek - 1) tab.classList.add('active');
-        })
-        tableTabs.forEach(tab =>{
-            if(Number(tab.getAttribute("data-week")) > activeWeek){
-                tab.style.pointerEvents = "none";
-            }else{
-                tab.style.pointerEvents = "initial";
-            }
-
-        })
-        document.addEventListener("click", e =>{
-            if(e.target.closest(".table__tabs-week")){
-                if(Number(e.target.closest(".table__tabs-week").getAttribute("data-week")) > activeWeek) {
-                    return
-                }
-                e.target.closest(".table__tabs-week").style.pointerEvents = "initial";
-                tableTabs.forEach(tab =>{
-                    tab.classList.remove("active");
-                })
-                let tabWeek = e.target.closest(".table__tabs-week").getAttribute("data-week");
-                e.target.closest(".table__tabs-week").classList.add("active");
-                renderUsers(tabWeek)
-            }
-        })
-
-    });
 })();
 
 
