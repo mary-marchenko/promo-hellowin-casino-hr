@@ -48,6 +48,7 @@
     const mainPage = document.querySelector(".fav-page"),
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
         participateBtns = document.querySelectorAll('.part-btn'),
+        textBtn = document.querySelectorAll('.textBtn'),
         redirectBtns = document.querySelectorAll('.play-btn'),
         loader = document.querySelector(".spinner-overlay"),
         resultsTable = document.querySelector('#table'),
@@ -67,7 +68,6 @@
     let loaderBtn = false
 
     let locale = "hr"
-    // let locale = "hr"
 
     if (hrLeng) locale = 'hr';
     if (enLeng) locale = 'en';
@@ -79,8 +79,7 @@
     let i18nData = {};
     const translateState = true;
 
-    // let userId = null;
-    let userId = 1454805
+    let userId = null;
 
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
@@ -492,12 +491,12 @@
         }).then(res => res.json())
             .then(res => {
                 loaderBtn = true
-                toggleClasses(participateBtns, "loader")
-                toggleTranslates(participateBtns, "loader")
+                toggleClasses(textBtn, "loader")
+                toggleTranslates(textBtn, "loader")
                 setTimeout(() =>{
-                    toggleTranslates(participateBtns, "loader_ready")
-                    toggleClasses(participateBtns, "done")
-                    toggleClasses(participateBtns, "loader")
+                    toggleTranslates(textBtn, "loader_ready")
+                    toggleClasses(textBtn, "done")
+                    toggleClasses(textBtn, "loader")
                 }, 500)
                 setTimeout(()=>{
                     checkUserAuth()

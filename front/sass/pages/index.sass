@@ -54,54 +54,54 @@ body
   align-items: center
   justify-content: center
   width: fit-content
-  min-width: 280px
+  min-width: 282px
   height: 155px
   cursor: pointer
   background: url('https://fav-prom.com/html/hellowin-2025-hr/img/btn-bg.png') no-repeat 50% 50%/cover
   background-size: 100% 100%
-  transition: background .4s ease-in-out
+  transition: all .4s ease-in-out
   position: relative
   outline: none
   border: none
-  font-family: $font-epundaSlab-extra-bold
-  font-size: 32px
-  line-height: 32px
-  letter-spacing: 1.28px
-  text-transform: uppercase
   padding-top: 10px
-  color: $btnBlue
   text-shadow: 0 2px 1px rgba(13, 18, 37, 0.20)
   z-index: 7
-  white-space: nowrap
+  transform-origin: center center
   &.play-btn
-    font-size: 25px
-    line-height: 29px
-  &:before
-    content: ''
+    span
+      font-size: 25px
+      line-height: 29px
+  span
+    white-space: nowrap
+    color: $btnBlue
+    font-family: $font-epundaSlab-extra-bold
+    font-size: 32px
+    line-height: 32px
+    letter-spacing: 1.28px
+    text-transform: uppercase
+  &__lights
     position: absolute
     left: 6px
     top: 6px
-    width: 96%
-    height: 91%
+    width: calc(100% - 11px)
+    height: calc(100% - 14px)
     background: url('https://fav-prom.com/html/hellowin-2025-hr/img/btn-lights.png') no-repeat 50% 50%/cover
     background-size: 100% 100%
     animation: lightsPulse 4s infinite
+    z-index: 1
+    transition: all .4s ease-in-out
   &:hover
     background: url('https://fav-prom.com/html/hellowin-2025-hr/img/btn-bg-hover.png') no-repeat 50% 50%/cover
-    background-size: 100% 100%
     outline: none
     border: none
-    &:before
+    .btn__lights
       background: url('https://fav-prom.com/html/hellowin-2025-hr/img/btn-lights-hover.png') no-repeat 50% 50%/cover
-      background-size: 100% 100%
   &:active
     background: url('https://fav-prom.com/html/hellowin-2025-hr/img/btn-bg-hover.png') no-repeat 50% 50%/cover
-    background-size: 100% 100%
     outline: none
     border: none
-    &:before
+    .btn__lights
       background: url('https://fav-prom.com/html/hellowin-2025-hr/img/btn-lights-active.png') no-repeat 50% 50%/cover
-      background-size: 100% 100%
 
 ._button
   z-index: 7
